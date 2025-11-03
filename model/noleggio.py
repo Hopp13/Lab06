@@ -1,9 +1,11 @@
+
 class Noleggio:
     contatore = 1
 
     def __init__(self, data, id_automobile, cognome_cliente):
         self.codice = f"N{Noleggio.contatore:03d}"
         Noleggio.contatore += 1
+
         self.data = data
         self.id_automobile = id_automobile
         self.cognome_cliente = cognome_cliente

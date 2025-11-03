@@ -1,18 +1,11 @@
 from database.DB_connect import get_connection
 from model.automobile import Automobile
-from model.noleggio import Noleggio
-
-'''
-    MODELLO: 
-    - Rappresenta la struttura dati
-    - Si occupa di gestire lo stato dell'applicazione
-    - Interagisce con il database
-'''
 
 class Autonoleggio:
     def __init__(self, nome, responsabile):
         self._nome = nome
         self._responsabile = responsabile
+        self._automobili = []
 
     @property
     def nome(self):
@@ -30,18 +23,27 @@ class Autonoleggio:
     def responsabile(self, responsabile):
         self._responsabile = responsabile
 
-    def get_automobili(self) -> list[Automobile] | None:
-        """
-            Funzione che legge tutte le automobili nel database
-            :return: una lista con tutte le automobili presenti oppure None
-        """
+    @property
+    def automobili(self):
+        return self._automobili
 
-        # TODO
+    def get_automobili(self):
+        connection = get_connection()
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM automobile"
+            cursor.execute(query)
+            for row in cursor.fetchall():
+                self.automobili.append(Automobile(row[0], row[1] ,row[2], row[3], row[4], row[5]))
 
-    def cerca_automobili_per_modello(self, modello) -> list[Automobile] | None:
-        """
-            Funzione che recupera una lista con tutte le automobili presenti nel database di una certa marca e modello
-            :param modello: il modello dell'automobile
-            :return: una lista con tutte le automobili di marca e modello indicato oppure None
-        """
-        # TODO
+            return self.automobili
+
+    def cerca_automobili_per_modello(self, modello):
+        connection = get_connection()
+        with connection.cursor() as cursor:
+            query = "SELECT * FROM automobile WHERE modello = %s;"
+            cursor.execute(query, (modello, ))
+            automobili = []
+            for row in cursor.fetchall():
+                automobili.append(Automobile(row[0], row[1] ,row[2], row[3], row[4], row[5]))
+
+            return automobili

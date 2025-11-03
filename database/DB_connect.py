@@ -2,16 +2,12 @@ import mysql.connector
 from mysql.connector import errorcode
 import pathlib
 
-
-def get_connection() -> mysql.connector.connection:
+def get_connection():
     try:
-        cnx = mysql.connector.connect(
-            option_files=f"{pathlib.Path(__file__).parent.resolve()}/connector.cnf"
-        )
-        return cnx
+        cnx = mysql.connector.connect(option_files = f"{pathlib.Path(__file__).parent.resolve()}/connector.cnf")
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            print("Something is wrong with your user name or password")
+            print("Something is wrong with your username or password")
             return None
         elif err.errno == errorcode.ER_BAD_DB_ERROR:
             print("Database does not exist")
@@ -19,3 +15,5 @@ def get_connection() -> mysql.connector.connection:
         else:
             print(err)
             return None
+    else:
+        return cnx

@@ -1,11 +1,16 @@
+
 class Automobile:
-    def __init__(self, codice, marca, modello, anno, posti, disponibile=True):
+    def __init__(self, codice, marca, modello, anno, posti, disponibile):
         self.codice = codice
         self.marca = marca
         self.modello = modello
         self.anno = int(anno)
         self.posti = int(posti)
-        self.disponibile = disponibile
+
+        if disponibile == 1:
+            self.disponibile = True
+        else:
+            self.disponibile = False
 
     def __eq__(self, other):
         return isinstance(other, Automobile) and self.codice == other.codice

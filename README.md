@@ -35,7 +35,7 @@ per gestire il database.
     ![phpMyAdmin.png](img/phpMyAdmin.png)
 
 5. Nella barra di navigazione in alto andare su `Importa`, quindi cliccare su `Scegli File` e selezionare il file 
-`autonoleggio.sql` fornito nel git, quindi cliccare su `Importa` in basso alla pagina per importare il database.
+`autonoleggio_lab6.sql` fornito nel git, quindi cliccare su `Importa` in basso alla pagina per importare il database.
 
     ![import.png](img/import.png)
 
@@ -103,11 +103,11 @@ Lab06/
 │   ├── controller.py (DA MODIFICARE)
 │   └── view.py (DA MODIFICARE)
 │
-├── autonoleggio.sql (DA IMPORTARE SU phpMyAdmin)
+├── autonoleggio_lab6.sql (DA IMPORTARE SU phpMyAdmin)
 └── main.py (DA ESEGUIRE)
  ```
 
-- Il file `autonoleggio.sql` da importare su `phpMyAdmin` per creare e popolare il database.
+- Il file `autonoleggio_lab6.sql` da importare su `phpMyAdmin` per creare e popolare il database.
 - Il file `main.py` da eseguire per far partire l’applicazione.
 - Il package **_database_** contiene il file `DB_connect.py` che effettua la connessione con il database (nel file `connector.cnf` sono contenute le info 
   necessarie per effettuare la connessione al database).
